@@ -4,6 +4,9 @@ import java.util.List;
 
 public interface IStudentRepository {
     List<Student> findAll();
-   void addNewStudent(Student student);
 
+    List<Student> getStudentByid(int id);
+  void addNewStudent(Student student);
+    void showDeleteForm(int id);
+    void save(Student student);
 }

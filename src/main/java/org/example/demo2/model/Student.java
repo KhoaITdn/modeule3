@@ -3,27 +3,27 @@ public class Student {
     private int id;
     private String name;
     private String email;
-    private boolean gender; // Đổi gender thành boolean
+    private int gender; // Đổi gender thành boolean
     private double point;
-    private String class_name;
+    private ClassName clazz;
 
     // Constructor đầy đủ
-    public Student(int id, String name , String email, boolean gender, double point, String class_name) {
+    public Student(int id, String name , String email, int gender, double point, ClassName clazz) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.gender = gender;
         this.point = point;
-        this.class_name = class_name;
+        this.clazz = clazz;
     }
 
     // Constructor không có id (cho trường hợp thêm sinh viên mới)
-    public Student(String name,String class_name, String email, boolean gender, double point) {
+    public Student(String name, String email, int gender, double point, ClassName clazz) {
         this.name = name;
         this.email = email;
         this.gender = gender;
         this.point = point;
-        this.class_name = class_name;
+        this.clazz = clazz;
     }
 
     public int getId() {
@@ -50,13 +50,6 @@ public class Student {
         this.email = email;
     }
 
-    public boolean isGender() {
-        return gender;
-    }
-
-    public void setGender(boolean gender) {
-        this.gender = gender;
-    }
 
     public double getPoint() {
         return point;
@@ -66,19 +59,20 @@ public class Student {
         this.point = point;
     }
 
-    public String getClass_name() {
-        return class_name;
-    }
 
-    public void setClass_name(String class_name) {
-        this.class_name = class_name;
-    }
-
-    public boolean getGender() {
+    public int getGender() {
         return gender;
     }
 
-    public String getClassName() {
-        return class_name;
+    public void setGender(int gender) {
+        this.gender = gender;
+    }
+
+    public ClassName getClazz() {
+        return clazz;
+    }
+
+    public void setClazz(ClassName clazz) {
+        this.clazz = clazz;
     }
 }

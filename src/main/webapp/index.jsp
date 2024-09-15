@@ -7,6 +7,6 @@
 <body>
 <h1><%= "Hello C03" %></h1>
 <br/>
-<a href="student-servlet">Danh sách LỚP 21PFIEV3</a>
+<a href="">Danh sách LỚP C0324 </a>
 </body>
 </html>
