@@ -1,9 +1,13 @@
 package org.example.demo2.model;
+
+import java.util.Collection;
+import java.util.List;
+
 public class Student {
     private int id;
     private String name;
     private String email;
-    private int gender; // Đổi gender thành boolean
+    private int gender;
     private double point;
     private ClassName clazz;
 
@@ -75,4 +79,17 @@ public class Student {
     public void setClazz(ClassName clazz) {
         this.clazz = clazz;
     }
+
+
+        public Collection<ClassName> getClazzes() {
+            return java.util.Collections.emptyList();
+        }
+
+        public Student getClassName() {
+
+            return null;
+        }
+
+
+
 }

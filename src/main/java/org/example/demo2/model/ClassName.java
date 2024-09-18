@@ -4,6 +4,7 @@ public class ClassName {
     private int class_id;
     private String class_name;
 
+
     public int getClass_id() {
         return class_id;
     }
@@ -28,6 +29,8 @@ public class ClassName {
     public ClassName(int class_id) {
         this.class_id = class_id;
     }
+
+
 }
 
 

@@ -2,6 +2,8 @@ package org.example.demo2.service;
 import org.example.demo2.model.Student;
 import org.example.demo2.repository.repositorystudent.IStudentRepository;
 import org.example.demo2.repository.repositorystudent.StudentRepositoryImpl;
+
+import java.sql.SQLException;
 import java.util.List;
 
 public class StudentServiceImpl implements IStudentService{
@@ -17,7 +19,7 @@ public class StudentServiceImpl implements IStudentService{
     }
 
     @Override
-    public void addNewStudent(Student student) {
+    public void addNewStudent(Student student) throws SQLException {
     iStudentRepository.addNewStudent(student);
 
     }
@@ -33,5 +35,16 @@ public class StudentServiceImpl implements IStudentService{
     public void showDeleteForm(int id) {
         iStudentRepository.showDeleteForm(id);
     }
+
+
+    @Override
+    public boolean emailExists(String email, int id) throws SQLException {
+        return iStudentRepository.emailExists(email,id);
+    }
+
+    public boolean isValidEmail(String email) throws SQLException {
+        return iStudentRepository.isValidEmail(email);
+    }
+
 
 }
