@@ -9,7 +9,10 @@
     <title>Danh sách lớp C0324 </title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">  
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
     <style>
 
         .button-29 {
@@ -60,18 +63,18 @@
             text-align: center;
             margin-top: 1rem;
         }
-            .container
-                {
-                    max-width: 80%;
-                    margin: 0 auto;
-                }
+        .container
+        {
+            max-width: 80%;
+            margin: 0 auto;
+        }
 
-                .student-list h1 {
-                   font-family: Serif, sans-serif;
-                   text-align: center;
-                   color: #020617;
-                    margin-bottom: 1rem;
-               }
+        .student-list h1 {
+            font-family: Serif, sans-serif;
+            text-align: center;
+            color: #020617;
+            margin-bottom: 1rem;
+        }
 
 
         /* From Uiverse.io by vinodjangid07 */
@@ -121,52 +124,16 @@
         }
     </style>
 
-
-
-<%--    .container--%>
-<%--        {--%>
-<%--            max-width: 80%;--%>
-<%--            margin: 0 auto;--%>
-<%--        }--%>
-
-<%--        .table-responsive {--%>
-<%--            overflow-x: auto;--%>
-<%--        }--%>
-
-<%--        .student-list h1 {--%>
-<%--            font-family: Serif, sans-serif;--%>
-<%--            text-align: center;--%>
-<%--            color: #198754;--%>
-<%--            margin-bottom: 1rem;--%>
-<%--        }--%>
-
-<%--        .add-student {--%>
-<%--            text-align: center;--%>
-<%--            margin-top: 1rem;--%>
-<%--        }--%>
-<%--        .btn-primary{--%>
-<%--            background-color: #479cc2;--%>
-<%--        }--%>
-<%--        .btn-primary:hover{--%>
-<%--            background-color: #5fb0e3;--%>
-<%--        }--%>
-<%--        .btn-danger{--%>
-<%--            background-color: #479cc2;--%>
-<%--        }--%>
-<%--        .btn-danger:hover{--%>
-<%--            background-color: #5fb0e3;--%>
-<%--        }--%>
-<%--    --%>
 </head>
 <body>
 <div class="container">
     <div class="student-list">
         <h1>Danh sách học viên </h1>
         <div class="table-responsive">
-            <table class="table table-bordered table-hover">
+            <table id="mainTable" class="table table-bordered table-hover">
                 <thead>
                 <tr style="background-color: #54d1ff;">
-<%--                    <th scope="col">ID</th>--%>
+
                     <th scope="col">Tên</th>
                     <th scope="col">Email</th>
                     <th scope="col">Giới tính</th>
@@ -179,45 +146,45 @@
                 </thead>
                 <tbody>
                 <c:forEach items="${studentList}" var="s">
-                <tr>
-<%--                    <td><c:out value="${s.id}"/></td>--%>
-                    <td><c:out value="${s.name}"/></td>
-                    <td><c:out value="${s.email}"/></td>
-                    <td>
-                        <c:if test="${s.gender==1}">
-                        <c:out value="Nam"/>
-                    </c:if>
-                        <c:if test="${s.gender==0}">
-                            <c:out value="Nữ"/>
-                        </c:if>
-                    </td>
-                    <td><c:out value="${s.point}"/></td>
-                    <td>
-                        <c:choose>
-                        <c:when test="${s.point > 8.9}">
-                            Loại giỏi
-                        </c:when>
-                        <c:when test="${s.point > 7.9}">
-                            Loại khá
-                        </c:when>
-                        <c:when test="${s.point > 6.9}">
-                            Loại trung bình
-                        </c:when>
-                        <c:when test="${s.point <6.9}">
-                            Loại yếu
-                        </c:when>
-                    </c:choose>
-                    </td>
-                    <td><c:out value="${s.clazz.class_name}"/></td>
-                    <td>
-                        <a href="?action=edit&sid=${s.id}" class="button-29" role="button">Chỉnh sửa</a>
-                    </td>
-    <td>
-        <a href="#" onclick="showMess(${s.id}, '${s.name}')" class="button-29" role="button">Xóa</a>
-<%--    <a href="delete?id=${s.id}" class="button-29" role="button" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Xóa</a>--%>
-    </td>
+                    <tr>
 
-                </tr>
+                        <td><c:out value="${s.name}"/></td>
+                        <td><c:out value="${s.email}"/></td>
+                        <td>
+                            <c:if test="${s.gender==1}">
+                                <c:out value="Nam"/>
+                            </c:if>
+                            <c:if test="${s.gender==0}">
+                                <c:out value="Nữ"/>
+                            </c:if>
+                        </td>
+                        <td><c:out value="${s.point}"/></td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${s.point > 8.9}">
+                                    Loại giỏi
+                                </c:when>
+                                <c:when test="${s.point > 7.9}">
+                                    Loại khá
+                                </c:when>
+                                <c:when test="${s.point > 6.9}">
+                                    Loại trung bình
+                                </c:when>
+                                <c:when test="${s.point <6.9}">
+                                    Loại yếu
+                                </c:when>
+                            </c:choose>
+                        </td>
+                        <td><c:out value="${s.clazz.class_name}"/></td>
+                        <td>
+                            <a href="?action=edit&sid=${s.id}" class="button-29" role="button">Edit</a>
+                        </td>
+                        <td>
+                            <a href="#" onclick="showMess(${s.id}, '${s.name}')" class="button-29" role="button">Delete</a>
+                                <%--    <a href="delete?id=${s.id}" class="button-29" role="button" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Xóa</a>--%>
+                        </td>
+
+                    </tr>
                 </c:forEach>
                 </tbody>
             </table>
@@ -226,11 +193,37 @@
     <div class="add-student">
         <a href="?action=create" class="button-29" role="button">Thêm mới học viên</a>
     </div>
+
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            <c:forEach begin="1" end="${totalPages}" var="i">
+                <li class="page-item ${currentPage == i ? 'active' : ''}">
+                    <a class="page-link" href="${pageContext.request.contextPath}/student?action=findAll&page=${i}">${i}</a>
+                </li>
+            </c:forEach>
+        </ul>
+    </nav>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4HCgxDaUyExNSe0zWXM7xo4pB4BBuJL6Z2jykzYL8"  
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 <script>
+    $(document).ready(function() {
+        $('#mainTable').DataTable({
+            "dom" : 'lrtip',
+            "lengthChange": false,
+            "pageLength": 5,
+            "columnDefs": [
+                { "orderable": false, "targets": 7 }
+            ]
+        });
+    });
     function showMess(id, name) {
         let option = confirm("Bạn có muốn xóa học viên " + name + " không?");
         if (option === true) {

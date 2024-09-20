@@ -1,5 +1,6 @@
 package org.example.demo2.service;
 
+import org.example.demo2.model.ClassName;
 import org.example.demo2.model.Student;
 
 import java.sql.SQLException;
@@ -15,5 +16,8 @@ public interface IStudentService {
 
 
     boolean isValidEmail(String email) throws SQLException;
+
+    List<ClassName> findClasses();
+
 
 }

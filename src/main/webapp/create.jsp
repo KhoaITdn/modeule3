@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -108,10 +109,11 @@
         <div class="mb-3">
             <label for="class_id" class="form-label">Lớp:</label>
             <select class="form-select" id="class_id" name="class_id" required>
-                <option value="" disabled selected>Chọn lớp</option>
-                <option value="1" ${param.class_id == '1' ? 'selected' : ''}>C03</option>
-                <option value="2" ${param.class_id == '2' ? 'selected' : ''}>C04</option>
-                <option value="3" ${param.class_id == '3' ? 'selected' : ''}>C05</option>
+                <option>
+                    <c:forEach items="${list}" var="c">
+                        <option value="${c.class_id}">${c.class_name}</option>
+                    </c:forEach>
+                </option>
             </select>
         </div>
         <div class="text-center">

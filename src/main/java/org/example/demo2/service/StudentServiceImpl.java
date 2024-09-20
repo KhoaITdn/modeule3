@@ -1,9 +1,11 @@
 package org.example.demo2.service;
+import org.example.demo2.model.ClassName;
 import org.example.demo2.model.Student;
 import org.example.demo2.repository.repositorystudent.IStudentRepository;
 import org.example.demo2.repository.repositorystudent.StudentRepositoryImpl;
 
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 public class StudentServiceImpl implements IStudentService{
@@ -23,9 +25,7 @@ public class StudentServiceImpl implements IStudentService{
     iStudentRepository.addNewStudent(student);
 
     }
-//
-//
-//
+
     @Override
     public void save(Student student) {
     iStudentRepository.save(student);
@@ -45,6 +45,13 @@ public class StudentServiceImpl implements IStudentService{
     public boolean isValidEmail(String email) throws SQLException {
         return iStudentRepository.isValidEmail(email);
     }
+
+    @Override
+    public List<ClassName> findClasses() {
+        return iStudentRepository.findClasses();
+    }
+
+
 
 
 }

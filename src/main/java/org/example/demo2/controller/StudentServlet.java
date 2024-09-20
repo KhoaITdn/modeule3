@@ -46,12 +46,14 @@ public class StudentServlet extends HttpServlet {
 
     }
 
-private void showCreateForm(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-    RequestDispatcher requestDispatcher = request.getRequestDispatcher("create.jsp");
-    requestDispatcher.forward(request, response);
+    private void showCreateForm(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        List<ClassName> classNameList = iStudentService.findClasses();
+        request.setAttribute("list", classNameList);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("create.jsp");
+        requestDispatcher.forward(request, response);
 
-}
+    }
     private void findAll(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("studentList", iStudentService.findAll());
@@ -93,6 +95,7 @@ private void showCreateForm(HttpServletRequest request, HttpServletResponse resp
     }
 
     private void addNewStudent(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ServletException {
+//        List<ClassName>classNameList = iStudentService.findClasses();
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         int gender  = Integer.parseInt(request.getParameter("gender"));
@@ -118,6 +121,8 @@ private void showCreateForm(HttpServletRequest request, HttpServletResponse resp
             request.setAttribute("gender",gender);
             request.setAttribute("point", point);
             request.setAttribute("class_id", classId);
+            request.setAttribute("list", iStudentService.findClasses());
+
             request.getRequestDispatcher("create.jsp").forward(request, response);
         }else {
             ClassName clazz = new ClassName(classId);
@@ -127,11 +132,11 @@ private void showCreateForm(HttpServletRequest request, HttpServletResponse resp
         }
     }
 
- private void showDeleteForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void showDeleteForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("sid"));
         iStudentService.showDeleteForm(id);
-     response.sendRedirect(request.getContextPath() + "?action=findAll");
- }
+        response.sendRedirect(request.getContextPath() + "?action=findAll");
+    }
 
     private void showUpdateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("sid"));
@@ -140,11 +145,11 @@ private void showCreateForm(HttpServletRequest request, HttpServletResponse resp
             Student student = studentList.get(0);
             request.setAttribute("st", student);
         }
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("update.jsp");
-            requestDispatcher.forward(request, response);
-        }
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("update.jsp");
+        requestDispatcher.forward(request, response);
+    }
 
-//    private void save(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+    //    private void save(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 //
 //        int id = Integer.parseInt(request.getParameter("id"));
 //        String name = request.getParameter("name");
@@ -191,25 +196,24 @@ private void showCreateForm(HttpServletRequest request, HttpServletResponse resp
 //            response.sendRedirect(request.getContextPath() + "?action=findAll");
 //        }
 //
-private void save(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-    int id = Integer.parseInt(request.getParameter("id"));
-    String name = request.getParameter("name");
-    String email = request.getParameter("email");
-    int gender = Integer.parseInt(request.getParameter("gender"));
-    double point = Double.parseDouble(request.getParameter("point"));
-    int classId = Integer.parseInt(request.getParameter("class_id"));
+    private void save(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        int gender = Integer.parseInt(request.getParameter("gender"));
+        double point = Double.parseDouble(request.getParameter("point"));
+        int classId = Integer.parseInt(request.getParameter("class_id"));
 
-    ClassName clazz = new ClassName(classId);
-    Student student = new Student(id, name, email, gender, point, clazz);
-    iStudentService.save(student);
-    response.sendRedirect(request.getContextPath() + "?action=findAll");
-}
-
-
-
-
+        ClassName clazz = new ClassName(classId);
+        Student student = new Student(id, name, email, gender, point, clazz);
+        iStudentService.save(student);
+        response.sendRedirect(request.getContextPath() + "?action=findAll");
     }
 
+
+
+
+}
 
 
 

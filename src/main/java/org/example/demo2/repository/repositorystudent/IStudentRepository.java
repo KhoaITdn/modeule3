@@ -14,4 +14,5 @@ public interface IStudentRepository {
     void save(Student student);
     boolean emailExists(String email,int id) throws SQLException;
     boolean isValidEmail(String email) throws SQLException;
+    List<ClassName> findClasses();
 }
