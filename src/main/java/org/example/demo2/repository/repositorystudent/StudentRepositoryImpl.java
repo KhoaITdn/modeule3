@@ -3,10 +3,10 @@ import org.example.demo2.model.ClassName;
 import org.example.demo2.model.Student;
 import org.example.demo2.repository.BaseRepository;
 
-import javax.imageio.stream.ImageInputStream;
+
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collections;
+
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -67,30 +67,30 @@ public class StudentRepositoryImpl implements IStudentRepository {
         }
     }
 
-@Override
-public List<Student> getStudentByid(int id) {
-    Connection connection = baseRepository.getConnection();
-    List<Student> students = new ArrayList<>();
-    try {
-        PreparedStatement preparedStatement = connection.prepareStatement(GET_STUDENT_BY_ID);
-        preparedStatement.setInt(1, id);
-        ResultSet resultSet = preparedStatement.executeQuery();
+    @Override
+    public List<Student> getStudentByid(int id) {
+        Connection connection = baseRepository.getConnection();
+        List<Student> students = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(GET_STUDENT_BY_ID);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-        while (resultSet.next()) {
-            int studentId = resultSet.getInt("id");
-            String name = resultSet.getString("name");
-            String email = resultSet.getString("email");
-            int gender = resultSet.getInt("gender");
-            double point = resultSet.getDouble("point");
-            int classId = resultSet.getInt("class_id");
-            ClassName clazz = new ClassName(classId);
-            Student student = new Student(studentId, name, email, gender, point, clazz);
-            students.add(student);
-        }
-    } catch (SQLException e) {
-        throw new RuntimeException(e);
-    } return students;
-}
+            while (resultSet.next()) {
+                int studentId = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String email = resultSet.getString("email");
+                int gender = resultSet.getInt("gender");
+                double point = resultSet.getDouble("point");
+                int classId = resultSet.getInt("class_id");
+                ClassName clazz = new ClassName(classId);
+                Student student = new Student(studentId, name, email, gender, point, clazz);
+                students.add(student);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } return students;
+    }
 
     @Override
     public void showDeleteForm(int id) {
@@ -179,7 +179,6 @@ public List<Student> getStudentByid(int id) {
 
 
 }
-
 
 
 

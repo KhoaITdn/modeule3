@@ -100,7 +100,7 @@
             </div>
             <div class="mb-3">
                 <label for="point" class="form-label">Điểm</label>
-                <input value="${st.point}" type="number" class="form-control" id="point" name="point">
+                <input value="${st.point}" step="0.01" type="number" class="form-control" id="point" name="point">
             </div>
             <div class="mb-3">
                 <label for="class_id" class="form-label">Lớp</label>

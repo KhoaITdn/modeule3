@@ -95,7 +95,6 @@ public class StudentServlet extends HttpServlet {
     }
 
     private void addNewStudent(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ServletException {
-//        List<ClassName>classNameList = iStudentService.findClasses();
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         int gender  = Integer.parseInt(request.getParameter("gender"));
@@ -149,53 +148,6 @@ public class StudentServlet extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
 
-    //    private void save(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-//
-//        int id = Integer.parseInt(request.getParameter("id"));
-//        String name = request.getParameter("name");
-//        String email = request.getParameter("email");
-//        int gender  = Integer.parseInt(request.getParameter("gender"));
-//        double point = Double.parseDouble(request.getParameter("point"));
-//        int classId = Integer.parseInt(request.getParameter("class_id"));
-//
-////        // Kiểm tra định dạng email
-////        if (!iStudentService.isValidEmail(email)) {
-////            request.setAttribute("errorMessage", "Định dạng email không hợp lệ. Vui lòng nhập lại.");
-////            request.setAttribute("name", name);
-////            request.setAttribute("email", email);
-////            request.setAttribute("gender", gender);
-////            request.setAttribute("point", point);
-////            request.setAttribute("class_id", classId);
-////            request.getRequestDispatcher("update.jsp").forward(request, response);
-////            return;
-////        }
-////
-////
-////        if (iStudentService.emailExists(email)) {
-////            request.setAttribute("errorMessage", "Email đã tồn tại. Vui lòng nhập lại.");
-////            request.getRequestDispatcher("create.jsp").forward(request, response);
-////        }else{
-////            ClassName clazz = new ClassName(classId);
-////            Student student = new Student(id, name, email, gender, point, clazz);
-////            iStudentService.save(student);
-////            response.sendRedirect(request.getContextPath() + "?action=findAll");
-////
-////        }
-//        // Lấy email hiện tại của học viên
-//        Student existingStudent = iStudentService.getStudentById(id).get(0);
-//        String existingEmail = existingStudent.getEmail();
-//
-//        // Kiểm tra email
-//        if (!email.equals(existingEmail) && iStudentService.emailExists(email)) {
-//            request.setAttribute("errorMessage", "Email đã tồn tại. Vui lòng nhập lại.");
-//            request.getRequestDispatcher("update.jsp").forward(request, response);
-//        } else {
-//            ClassName clazz = new ClassName(classId);
-//            Student student = new Student(id, name, email, gender, point, clazz);
-//            iStudentService.save(student);
-//            response.sendRedirect(request.getContextPath() + "?action=findAll");
-//        }
-//
     private void save(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
@@ -214,7 +166,6 @@ public class StudentServlet extends HttpServlet {
 
 
 }
-
 
 
 

@@ -104,15 +104,15 @@
         </div>
         <div class="mb-3">
             <label for="point" class="form-label">Điểm:</label>
-            <input type="number" class="form-control" id="point" name="point" value="${param.point}" required>
+            <input type="number" class="form-control" id="point" name="point" step="0.01" value="${param.point}" required>
         </div>
         <div class="mb-3">
             <label for="class_id" class="form-label">Lớp:</label>
             <select class="form-select" id="class_id" name="class_id" required>
                 <option>
                     <c:forEach items="${list}" var="c">
-                        <option value="${c.class_id}">${c.class_name}</option>
-                    </c:forEach>
+                <option value="${c.class_id}">${c.class_name}</option>
+                </c:forEach>
                 </option>
             </select>
         </div>

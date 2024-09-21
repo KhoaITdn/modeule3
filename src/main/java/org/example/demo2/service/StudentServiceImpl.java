@@ -36,7 +36,6 @@ public class StudentServiceImpl implements IStudentService{
         iStudentRepository.showDeleteForm(id);
     }
 
-
     @Override
     public boolean emailExists(String email, int id) throws SQLException {
         return iStudentRepository.emailExists(email,id);

@@ -9,10 +9,11 @@ public interface IStudentRepository {
     List<Student> findAll();
 
     List<Student> getStudentByid(int id);
-  void addNewStudent(Student student) throws SQLException;
+    void addNewStudent(Student student) throws SQLException;
     void showDeleteForm(int id);
     void save(Student student);
     boolean emailExists(String email,int id) throws SQLException;
     boolean isValidEmail(String email) throws SQLException;
     List<ClassName> findClasses();
+
 }
