@@ -1,0 +1,39 @@
+body {
+    background: linear-gradient(to bottom, #e6f2ff, #ffffff);
+    min-height: 100vh;
+}
+
+.button {
+    cursor: pointer;
+    font-size: large;
+    font-family: inherit;
+    font-weight: bold;
+    color: #54d1ff;
+    background-color: #f8f8fd;
+    padding: 0.8em 2.2em;
+    border-radius: 50em;
+    border: 6px solid #54d1ff;
+    box-shadow: 0px 8px #54d1ff;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin: 10px;
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: #e6f7ff;
+    text-decoration: none;
+    color: #54d1ff;
+}
+
+.button:active {
+    position: relative;
+    top: 8px;
+    border: 6px solid #00319a;
+    box-shadow: 0px 0px;
+}
+
+.card {
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}

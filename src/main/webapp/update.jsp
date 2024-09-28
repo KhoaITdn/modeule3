@@ -81,11 +81,10 @@
             </div>
             <div class="mb-3">
                 <label for="name" class="form-label">Tên</label>
-                <input value="${st.name}" type="text" class="form-control" id="name" name="name">
-            </div>
+                <input type="text" class="form-control" id="name" name="name" value="${st.name}">            </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input value="${st.email}" type="email" class="form-control" id="email" name="email">
+                <input type="email" class="form-control" id="email" name="email" value="${st.email}">
             </div>
             <div class="mb-3">
                 <label class="form-label">Giới tính</label>
@@ -100,11 +99,17 @@
             </div>
             <div class="mb-3">
                 <label for="point" class="form-label">Điểm</label>
-                <input value="${st.point}" step="0.01" type="number" class="form-control" id="point" name="point">
+                <input type="number" class="form-control" id="point" name="point" step="0.01" value="${st.point}">
             </div>
-            <div class="mb-3">
-                <label for="class_id" class="form-label">Lớp</label>
-                <input value="${st.clazz.class_id}" type="text" class="form-control" id="class_id" name="class_id">
+            <div class="form-group">
+                <label for="classId">Lớp học</label>
+                <select class="form-select" name="classId" id="classId" required>
+                    <c:forEach var="c" items="${listU}">
+                        <option value="${c.classId}" ${c.classId == st.clazz.classId ? 'selected' : ''}>
+                                ${c.className}
+                        </option>
+                    </c:forEach>
+                </select>
             </div>
             <div class="text-center">
                 <button type="submit" class="btn btn-primary">Cập nhật</button>
@@ -112,8 +117,31 @@
         </form>
     </div>
 </div>
+<%-- Modal for email validation error --%>
+<div class="modal fade" id="emailErrorModal" tabindex="-1" aria-labelledby="emailErrorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="emailErrorModalLabel">Lỗi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ${errorMessage}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Bootstrap JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    <% if (request.getAttribute("errorMessage") != null) { %>
+    let emailErrorModal = new bootstrap.Modal(document.getElementById('emailErrorModal'));
+    emailErrorModal.show();
+    <% } %>
+</script>
 </body>
 </html>

@@ -5,7 +5,7 @@ import java.sql.SQLException;
 // kết nối với DB
 public class BaseRepository {
     private Connection connection;
-    private static final String URL = "jdbc:mysql://localhost:3306/c0324i?useUnicode=true&characterEncoding=UTF-8";
+    private static final String URL = "jdbc:mysql://localhost:3306/cases?useUnicode=true&characterEncoding=UTF-8";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "codegym";
 

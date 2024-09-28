@@ -1,34 +1,39 @@
 package org.example.demo2.model;
 
-import java.util.Collection;
-import java.util.List;
 
 public class Student {
     private int id;
     private String name;
+//    private Date birthday;
     private String email;
     private int gender;
-    private double point;
-    private ClassName clazz;
+    private double point;;
+    private ClassModel  clazz;
 
-    // Constructor đầy đủ
-    public Student(int id, String name , String email, int gender, double point, ClassName clazz) {
+//    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+
+    public Student(int id, String name, String email , int gender, double point, ClassModel  clazz) {
         this.id = id;
         this.name = name;
+//        this.birthday = birthday;
         this.email = email;
         this.gender = gender;
         this.point = point;
         this.clazz = clazz;
     }
 
-    // Constructor không có id (cho trường hợp thêm sinh viên mới)
-    public Student(String name, String email, int gender, double point, ClassName clazz) {
+    public Student(String name, String email , int gender, double point, ClassModel  clazz) {
         this.name = name;
+//        this.birthday = birthday;
         this.email = email;
         this.gender = gender;
         this.point = point;
         this.clazz = clazz;
     }
+
+
+
 
     public int getId() {
         return id;
@@ -46,14 +51,13 @@ public class Student {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public int getGender() {
+        return gender;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setGender(int gender) {
+        this.gender = gender;
     }
-
 
     public double getPoint() {
         return point;
@@ -63,33 +67,21 @@ public class Student {
         this.point = point;
     }
 
-
-    public int getGender() {
-        return gender;
+    public String getEmail() {
+        return email;
     }
 
-    public void setGender(int gender) {
-        this.gender = gender;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public ClassName getClazz() {
+    public ClassModel  getClazz() {
         return clazz;
     }
 
-    public void setClazz(ClassName clazz) {
+    public void setClazz(ClassModel  clazz) {
         this.clazz = clazz;
     }
-
-
-        public Collection<ClassName> getClazzes() {
-            return java.util.Collections.emptyList();
-        }
-
-        public Student getClassName() {
-
-            return null;
-        }
-
 
 
 }

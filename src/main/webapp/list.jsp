@@ -6,8 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danh sách lớp C0324 </title>
-
+    <title>Danh Sách Học Viên CodeGym </title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
@@ -122,7 +122,22 @@
 <body>
 <div class="container">
     <div class="student-list">
-        <h1>Danh sách học viên </h1>
+        <h1>Danh sách học viên CodeGym </h1>
+        <!-- form search -->
+        <form class="d-flex" action="student-servlet" method="get">
+            <input type="hidden" name="action" value="search">
+            <input type="text" name="search" id="SearchBox" class="form-control me-2" placeholder="Tìm kiếm theo tên...">
+            <button class="btn btn-outline-secondary me-2" type="submit">
+                <i class="fas fa-search" ></i> <!-- Biểu tượng kính lúp -->
+            </button>
+        </form>
+
+        <form action="student-servlet" method="get">
+            <input type="hidden" name="action" value="searchByEmail">
+            <input type="text" name="email" placeholder="Nhập email">
+            <button type="submit">Tìm kiếm theo Email</button>
+        </form>
+
         <div class="table-responsive">
             <table id="mainTable" class="table table-bordered table-hover">
                 <thead>
@@ -133,12 +148,12 @@
                     <th scope="col">Điểm</th>
                     <th scope="col">Xếp loại</th>
                     <th scope="col">Lớp</th>
-                    <th scope="col">Update</th>
-                    <th scope="col">Delete</th>
+                    <th scope="col">Chỉnh sửa</th>
+                    <th scope="col">Xóa</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${studentList}" var="s">
+                <c:forEach items="${students}" var="s">
                     <tr>
                         <td><c:out value="${s.name}"/></td>
                         <td><c:out value="${s.email}"/></td>
@@ -153,27 +168,27 @@
                         <td><c:out value="${s.point}"/></td>
                         <td>
                             <c:choose>
-                                <c:when test="${s.point > 8.9}">
+                                <c:when test="${s.point > 9}">
                                     Loại giỏi
                                 </c:when>
-                                <c:when test="${s.point > 7.9}">
+                                <c:when test="${s.point > 7}">
                                     Loại khá
                                 </c:when>
-                                <c:when test="${s.point > 6.9}">
+                                <c:when test="${s.point > 5}">
                                     Loại trung bình
                                 </c:when>
-                                <c:when test="${s.point <6.9}">
+                                <c:when test="${s.point < 3}">
                                     Loại yếu
                                 </c:when>
                             </c:choose>
                         </td>
-                        <td><c:out value="${s.clazz.class_name}"/></td>
+                        <td><c:out value="${s.clazz.className}"/></td>
                         <td>
-                            <a href="?action=edit&sid=${s.id}" class="button-29" role="button"> Edit </a>
+                            <a href="?action=edit&sid=${s.id}" class="button-29" role="button"> Chỉnh sửa </a>
                         </td>
                         <td>
                             <a href="#" class="button-29" role="button" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                               onclick="prepareDelete(${s.id}, '${s.name}')">Delete</a>
+                               onclick="prepareDelete(${s.id})">Xóa</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -232,7 +247,7 @@
             "lengthChange": false,
             "pageLength": 5,
             "columnDefs": [
-                { "orderable": false, "targets": 7 }
+                { "orderable": false, "targets": 5 }
             ]
         });
 
